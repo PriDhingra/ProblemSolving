@@ -20,23 +20,19 @@ vector<int> findCommonElements(vector<int> &a, vector<int> &b, vector<int> &c)
 {
     // Write your code here
     vector<int> result;
-    set<int> temp;
-    
-    sort(b.begin(), b.end());
-    sort(c.begin(), c.end());
-    
-    int size1 = b.size();
-    int size2 = c.size();
-    
     
     for(int i = 0;i < a.size();i++) {
-        if(solve(b, 0, b.size() - 1, a[i]) && solve(c, 0, c.size() - 1, a[i])) {      
-            temp.insert(a[i]);
+        if(solve(b, 0, b.size() - 1, a[i]) && solve(c, 0, c.size() - 1, a[i])) {   
+            if(result.size() == 0) {
+                result.push_back(a[i]);
+            } else if(result[result.size() - 1] != a[i]) {
+                result.push_back(a[i]);
+            }
         }
     }
     
-    for(auto i: temp)
-        result.push_back(i);
+//     for(auto i: temp)
+//         result.push_back(i);
     
     return result;
 }
